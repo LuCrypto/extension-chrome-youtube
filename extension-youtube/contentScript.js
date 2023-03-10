@@ -14,6 +14,16 @@ window.addEventListener("load", async () => {
   console.log("exec in the page context 2");
   await wait(1500);
 
+  // Créez un élément link pour inclure votre fichier CSS
+  // const link = document.createElement('link');
+  // link.rel = 'stylesheet';
+  // link.type = 'text/css';
+  // link.href = 'styles.css';
+  // Ajoutez l'élément link au head de la page
+  // document.head.appendChild(link);
+
+  // For observe the DOM and detect when a new element is added
+  // and then execute the function execMode
   const parentElement = document.querySelector("#contents");
   // Créez une instance de MutationObserver
   const observer = new MutationObserver( async (mutationsList, observer) => {
@@ -47,6 +57,7 @@ window.addEventListener("load", async () => {
     mode = 0;
     execMode(mode);
   };
+  newButton.id = "buttonAll";
   nouvelElement.appendChild(newButton);
 
   // Only videos
