@@ -16,7 +16,17 @@ window.addEventListener("load", async () => {
 
   // For observe the DOM and detect when a new element is added
   // and then execute the function execMode
-  const parentElement = document.querySelector("#contents");
+  let parentElement = null;
+  let numberTryParent = 0;
+
+  while (parentElement === null && numberTryParent < 15) {
+    console.log('parentElement === null')
+    parentElement = document.querySelector("#contents");
+
+    numberTryParent++;
+    await wait(1000);
+  }
+
   // Créez une instance de MutationObserver
   const observer = new MutationObserver(async (mutationsList, observer) => {
     // Itérez sur la liste des mutations observées
@@ -74,19 +84,19 @@ window.addEventListener("load", async () => {
   nouvelElement.appendChild(newButton);
 
   let divYoutube = null;
-  let numberTry = 0;
+  let numberTryYoutube = 0;
 
-  while (divYoutube === null && numberTry < 15) {
+  while (divYoutube === null && numberTryYoutube < 15) {
     console.log('divYoutube === null')
     divYoutube = this.document.querySelector(
       "#dismissible > div.grid-subheader.style-scope.ytd-shelf-renderer"
     );
 
-    numberTry++;
+    numberTryYoutube++;
     await wait(1000);
   }
 
-  if (numberTry >= 15) {
+  if (numberTryYoutube >= 15) {
     console.log("numberTry >= 15");
     return;
   }
