@@ -18,7 +18,7 @@ window.addEventListener("load", async () => {
   // and then execute the function execMode
   const parentElement = document.querySelector("#contents");
   // Créez une instance de MutationObserver
-  const observer = new MutationObserver( async (mutationsList, observer) => {
+  const observer = new MutationObserver(async (mutationsList, observer) => {
     // Itérez sur la liste des mutations observées
     for (let mutation of mutationsList) {
       // Vérifiez si des enfants ont été ajoutés à l'élément parent
@@ -42,7 +42,7 @@ window.addEventListener("load", async () => {
 
   // All
   let newButton = document.createElement("button");
-  newButton.innerHTML = "Afficher tout";
+  newButton.innerHTML = "Display all";
   newButton.onclick = () => {
     console.log("click");
     mode = 0;
@@ -53,7 +53,7 @@ window.addEventListener("load", async () => {
 
   // Only videos
   newButton = document.createElement("button");
-  newButton.innerHTML = "Afficher les vidéos";
+  newButton.innerHTML = "Display only videos";
   newButton.onclick = () => {
     console.log("click");
     mode = 1;
@@ -64,7 +64,7 @@ window.addEventListener("load", async () => {
 
   // Only shorts
   newButton = document.createElement("button");
-  newButton.innerHTML = "Afficher les shorts";
+  newButton.innerHTML = "Display only shorts";
   newButton.onclick = () => {
     console.log("click");
     mode = 2;
@@ -72,13 +72,26 @@ window.addEventListener("load", async () => {
   };
   newButton.classList = "buttonExtension";
   nouvelElement.appendChild(newButton);
-  
-  const divYoutube = this.document.querySelector(
-    "#dismissible > div.grid-subheader.style-scope.ytd-shelf-renderer"
-  );
+
+  let divYoutube = null;
+  let numberTry = 0;
+
+  while (divYoutube === null && numberTry < 15) {
+    console.log('divYoutube === null')
+    divYoutube = this.document.querySelector(
+      "#dismissible > div.grid-subheader.style-scope.ytd-shelf-renderer"
+    );
+
+    numberTry++;
+    await wait(1000);
+  }
+
+  if (numberTry >= 15) {
+    console.log("numberTry >= 15");
+    return;
+  }
 
   // Add buttons in the DOM
-
   let newTitle = document.createElement("p");
 
   newTitle.innerHTML = "Extension Youtube Filter";
@@ -91,7 +104,7 @@ window.addEventListener("load", async () => {
 // Exec mode of display
 const execMode = async (mode) => {
   await wait(500);
-  console.log('execMode : ', mode)
+  console.log("execMode : ", mode);
 
   displayAll();
   switch (mode) {

@@ -1,7 +1,7 @@
 {
-    "name": "Youtube extension",
-    "version": "0.1.0",
-    "description": "Saving timestamps in YT videos",
+    "name": "Youtube Filter Extension",
+    "version": "0.1.1",
+    "description": "This extension allows you to filter by shorts or videos. You can see only the videos or only the short",
     "permissions": ["storage", "tabs"],
     "host_permissions": ["https://*.youtube.com/*"],
     "background": {
@@ -15,7 +15,7 @@
       }
     ],
     "action": {
-      "default_title": "Youtube extension",
+      "default_title": "Youtube Filter Extension",
       "default_popup": "popup.html"
     },
     "manifest_version": 3
