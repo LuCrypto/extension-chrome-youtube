@@ -14,14 +14,6 @@ window.addEventListener("load", async () => {
   console.log("exec in the page context 2");
   await wait(1500);
 
-  // Créez un élément link pour inclure votre fichier CSS
-  // const link = document.createElement('link');
-  // link.rel = 'stylesheet';
-  // link.type = 'text/css';
-  // link.href = 'styles.css';
-  // Ajoutez l'élément link au head de la page
-  // document.head.appendChild(link);
-
   // For observe the DOM and detect when a new element is added
   // and then execute the function execMode
   const parentElement = document.querySelector("#contents");
@@ -46,7 +38,6 @@ window.addEventListener("load", async () => {
   // Commencez l'observation en passant l'élément parent et les options de configuration
   observer.observe(parentElement, observerConfig);
 
-
   let nouvelElement = document.createElement("div");
 
   // All
@@ -57,7 +48,7 @@ window.addEventListener("load", async () => {
     mode = 0;
     execMode(mode);
   };
-  newButton.id = "buttonAll";
+  newButton.classList = "buttonExtension";
   nouvelElement.appendChild(newButton);
 
   // Only videos
@@ -68,6 +59,7 @@ window.addEventListener("load", async () => {
     mode = 1;
     execMode(mode);
   };
+  newButton.classList = "buttonExtension";
   nouvelElement.appendChild(newButton);
 
   // Only shorts
@@ -78,6 +70,7 @@ window.addEventListener("load", async () => {
     mode = 2;
     execMode(mode);
   };
+  newButton.classList = "buttonExtension";
   nouvelElement.appendChild(newButton);
   
   const divYoutube = this.document.querySelector(
@@ -85,6 +78,13 @@ window.addEventListener("load", async () => {
   );
 
   // Add buttons in the DOM
+
+  let newTitle = document.createElement("p");
+
+  newTitle.innerHTML = "Extension Youtube Filter";
+  newTitle.classList = "titleExtension";
+
+  divYoutube.appendChild(newTitle);
   divYoutube.appendChild(nouvelElement);
 });
 
@@ -120,8 +120,6 @@ const displayOnlyVideos = () => {
         "#items > ytd-grid-video-renderer"
       );
 
-      console.log("array length : ", array.length);
-
       array.forEach((element) => {
         if (
           element.querySelector(
@@ -144,10 +142,6 @@ const displayOnlyShorts = () => {
         "#items > ytd-grid-video-renderer"
       );
 
-      console.log("array length : ", array.length);
-
-      let cache = 0;
-
       array.forEach((element) => {
         if (
           element.querySelector(
@@ -155,11 +149,8 @@ const displayOnlyShorts = () => {
           ) === null
         ) {
           element.style.display = "none";
-          cache++;
         }
       });
-
-      console.log("cache : ", cache);
     });
 };
 
@@ -172,8 +163,6 @@ const displayAll = () => {
       const array = elementDOM.querySelectorAll(
         "#items > ytd-grid-video-renderer"
       );
-
-      console.log("array length : ", array.length);
 
       array.forEach((element) => {
         element.style.display = "block";
