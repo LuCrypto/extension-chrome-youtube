@@ -1,6 +1,6 @@
 console.log("exec in the page context");
 
-var mode = 0;
+var mode = 1;
 
 function wait(n) {
   return new Promise((resolve) => {

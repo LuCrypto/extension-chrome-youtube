@@ -1,2 +1,3 @@
-# extension-chrome-youtube
-Permet de regarder seulement les vidéos ou seulements les shorts.
+# extension-chrome-youtube : youtube change his home page, so it doesn't work
+
+Allow you yo show only videos or only short
